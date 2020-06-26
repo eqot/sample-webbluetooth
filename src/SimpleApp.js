@@ -52,6 +52,11 @@ export default function App() {
     ])
   }
 
+  const moveForward = () => move(30, 30, 250)
+  const moveBackward = () => move(-30, -30, 250)
+  const turnLeft = () => move(-30, 30, 250)
+  const turnRight = () => move(30, -30, 250)
+
   return (
     <div className="App">
       <h2>toio Core Cube コントローラー</h2>
@@ -66,10 +71,10 @@ export default function App() {
       </button>
       <br />
 
-      <button onClick={() => move(30, 30, 250)}>前進</button>
-      <button onClick={() => move(-30, -30, 250)}>後進</button>
-      <button onClick={() => move(-30, 30, 250)}>左回転</button>
-      <button onClick={() => move(30, -30, 250)}>右回転</button>
+      <button onClick={moveForward}>前進</button>
+      <button onClick={moveBackward}>後進</button>
+      <button onClick={turnLeft}>左回転</button>
+      <button onClick={turnRight}>右回転</button>
     </div>
   )
 }
