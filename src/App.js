@@ -1,23 +1,23 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-import { CoreCube } from "./CoreCube"
-import "./styles.css"
+import { CoreCube } from "./CoreCube";
+import "./styles.css";
 
 function CoreCubeState(props) {
-  const [state, setState] = useState({ x: 0, y: 0, direction: 0 })
+  const [state, setState] = useState({ x: 0, y: 0, direction: 0 });
 
-  const moveForward = async () => await props.target.move(30, 30, 250)
-  const moveBackward = async () => await props.target.move(-30, -30, 250)
-  const turnLeft = async () => await props.target.move(-30, 30, 250)
-  const turnRight = async () => await props.target.move(30, -30, 250)
+  const moveForward = async () => await props.target.move(30, 30, 250);
+  const moveBackward = async () => await props.target.move(-30, -30, 250);
+  const turnLeft = async () => await props.target.move(-30, 30, 250);
+  const turnRight = async () => await props.target.move(30, -30, 250);
 
   setInterval(() => {
     setState({
       x: props.target.x,
       y: props.target.y,
       direction: props.target.direction
-    })
-  }, 1000)
+    });
+  }, 1000);
 
   return (
     <>
@@ -30,11 +30,11 @@ function CoreCubeState(props) {
         ({state.x}, {state.y}) {state.direction}
       </span>
     </>
-  )
+  );
 }
 
 export default function App() {
-  const [coreCubes, setCoreCubes] = useState([])
+  const [coreCubes, setCoreCubes] = useState([]);
 
   return (
     <div className="App">
@@ -42,8 +42,8 @@ export default function App() {
 
       <button
         onClick={async () => {
-          const coreCube = await CoreCube.discover()
-          setCoreCubes(coreCubes.concat(coreCube))
+          const coreCube = await CoreCube.discover();
+          setCoreCubes(coreCubes.concat(coreCube));
         }}
       >
         接続
@@ -57,5 +57,5 @@ export default function App() {
         </>
       ))}
     </div>
-  )
+  );
 }

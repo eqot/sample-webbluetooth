@@ -1,43 +1,43 @@
-import React from "react"
+import React from "react";
 
 class BleDevice {
-  device = null
-  characteristics = {}
+  device = null;
+  characteristics = {};
 
   static async discover(serviceUuid) {
     const device = await navigator.bluetooth.requestDevice({
       filters: [{ services: [serviceUuid] }]
-    })
+    });
 
-    return new BleDevice(device)
+    return new BleDevice(device);
   }
 
   constructor(device) {
-    this.device = device
+    this.device = device;
   }
 
   async connect() {
-    const gattServer = await this.device.gatt.connect()
+    const gattServer = await this.device.gatt.connect();
 
     for (const service of await gattServer.getPrimaryServices()) {
       for (const characteristic of await service.getCharacteristics()) {
-        this.characteristics[characteristic.uuid] = characteristic
+        this.characteristics[characteristic.uuid] = characteristic;
       }
     }
   }
 
   write(characteristicUuid, data) {
-    const characteristic = this.characteristics[characteristicUuid]
+    const characteristic = this.characteristics[characteristicUuid];
     if (!characteristic) {
-      return
+      return;
     }
 
-    characteristic.writeValue(new Uint8Array(data))
+    characteristic.writeValue(new Uint8Array(data));
   }
 }
 
 export default function App() {
-  let coreCube
+  let coreCube;
 
   const move = (leftSpeed, rightSpeed, durationMs) => {
     coreCube.write("10b20102-5b3b-4571-9508-cf3efcd7bbae", [
@@ -49,13 +49,13 @@ export default function App() {
       rightSpeed >= 0 ? 1 : 2,
       Math.abs(rightSpeed),
       durationMs / 10
-    ])
-  }
+    ]);
+  };
 
-  const moveForward = () => move(30, 30, 250)
-  const moveBackward = () => move(-30, -30, 250)
-  const turnLeft = () => move(-30, 30, 250)
-  const turnRight = () => move(30, -30, 250)
+  const moveForward = () => move(30, 30, 250);
+  const moveBackward = () => move(-30, -30, 250);
+  const turnLeft = () => move(-30, 30, 250);
+  const turnRight = () => move(30, -30, 250);
 
   return (
     <div className="App">
@@ -63,8 +63,8 @@ export default function App() {
 
       <button
         onClick={async () => {
-          coreCube = await BleDevice.discover("10b20100-5b3b-4571-9508-cf3efcd7bbae")
-          await coreCube.connect()
+          coreCube = await BleDevice.discover("10b20100-5b3b-4571-9508-cf3efcd7bbae");
+          await coreCube.connect();
         }}
       >
         接続
@@ -76,5 +76,5 @@ export default function App() {
       <button onClick={turnLeft}>左回転</button>
       <button onClick={turnRight}>右回転</button>
     </div>
-  )
+  );
 }
