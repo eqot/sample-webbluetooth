@@ -8,13 +8,25 @@ export class CoreCube extends Peripheral {
     MOTOR: CoreCube.UUID("0102")
   }
 
-  timer = null
-
   static async discover() {
     const device = await super.discover(CoreCube.ServiceUuid)
 
     const coreCube = new CoreCube(device)
     await coreCube.connect()
+
+    coreCube.startNotification(CoreCube.CharacteristicUuid.ID, (data) => {
+      switch (data.getUint8(0)) {
+        case 1:
+          coreCube.x = data.getUint16(1, true)
+          coreCube.y = data.getUint16(3, true)
+          coreCube.direction = data.getUint16(5, true)
+          break
+
+        default:
+          break
+      }
+    })
+
     return coreCube
   }
 

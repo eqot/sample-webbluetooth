@@ -30,4 +30,17 @@ export class Peripheral {
 
     await characteristic.writeValue(new Uint8Array(data))
   }
+
+  async startNotification(characteristicUuid, callback) {
+    const characteristic = this.characteristics[characteristicUuid]
+    if (!characteristic) {
+      return
+    }
+
+    await characteristic.startNotifications()
+
+    characteristic.addEventListener("characteristicvaluechanged", (event) => {
+      callback(event.target.value)
+    })
+  }
 }
