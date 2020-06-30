@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Bluetooth";
+
 class BleDevice {
   device = null;
   characteristics = {};
