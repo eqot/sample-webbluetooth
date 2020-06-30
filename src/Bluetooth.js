@@ -4,7 +4,8 @@ function send(method, params) {
     method,
     params
   };
-  window.parent.postMessage(JSON.stringify(message), "*");
+  // window.parent.postMessage(JSON.stringify(message), "*");
+  window.parent.ReactNativeWebView.postMessage(JSON.stringify(message));
 }
 
 class Bluetooth {
@@ -14,6 +15,20 @@ class Bluetooth {
     return new Promise((resolve) => {
       console.log(options);
       resolve(new Device());
+    });
+  }
+}
+
+class Device {
+  constructor() {
+    this.gatt = new Gatt();
+  }
+
+  async write(uuid, data, withoutResponse) {
+    send("write", {
+      uuid,
+      data,
+      withoutResponse
     });
   }
 }
@@ -29,20 +44,6 @@ class Gatt {
     send("getPrimaryServices");
 
     return [];
-  }
-}
-
-class Device {
-  constructor() {
-    this.gatt = new Gatt();
-  }
-
-  async write(uuid, data, withoutResponse) {
-    send("write", {
-      uuid,
-      data,
-      withoutResponse
-    });
   }
 }
 
