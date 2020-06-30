@@ -16,9 +16,9 @@ window.addEventListener("message", (event) => {
 class Bluetooth {
   static requestDevice(options) {
     window.onmessage = (event) => {
-      console.log(event);
+      console.log(event.data);
 
-      send("ok: " + event);
+      send("ok: " + event.data);
     };
 
     send("requestDevice");
