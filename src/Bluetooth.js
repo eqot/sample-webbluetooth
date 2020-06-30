@@ -19,8 +19,16 @@ class Bluetooth {
 }
 
 class Gatt {
-  connect() {
-    send("connect");
+  async connect() {
+    send("connect3");
+
+    return this;
+  }
+
+  async getPrimaryServices() {
+    send("getPrimaryServices");
+
+    return [];
   }
 }
 
@@ -38,9 +46,14 @@ class Device {
   }
 }
 
-if (!navigator.bluetooth) {
-  navigator.bluetooth = Bluetooth;
-  console.info("Use replaced bluetooth functionality");
-} else {
-  console.info("Use browser's bluetooth functionality");
-}
+// if (!navigator.bluetooth) {
+//   navigator.bluetooth = Bluetooth;
+//   console.info("Use replaced bluetooth functionality");
+// } else {
+//   console.info("Use browser's bluetooth functionality");
+// }
+
+Object.defineProperty(navigator, "bluetooth", {
+  value: Bluetooth
+  // configurable: true
+});
