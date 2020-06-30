@@ -5,11 +5,12 @@ function send(method, params) {
     params
   };
   window.parent.postMessage(JSON.stringify(message), "*");
-  // window.parent.ReactNativeWebView.postMessage(JSON.stringify(message));
 }
 
-window.parent.addEventListener("message", (event) => {
+window.addEventListener("message", (event) => {
   console.log(event);
+
+  send("ok: " + event);
 });
 
 class Bluetooth {
