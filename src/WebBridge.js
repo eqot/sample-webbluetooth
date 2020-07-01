@@ -31,16 +31,19 @@ window.addEventListener("message", (event) => {
   // console.log(event.data);
   try {
     const data = JSON.parse(event.data);
-    console.log(data);
 
     if (data.type !== "toio") {
       return;
     }
 
+    console.log(data);
+    console.log(0);
+
     const connection = WebBridge.connections[data.id];
     if (!connection || !connection.resolve) {
       return;
     }
+    console.log(1);
 
     switch (data.message) {
       case "bridge:connected": {
@@ -50,5 +53,6 @@ window.addEventListener("message", (event) => {
         console.log("resolved", data.connectionId);
       }
     }
+    console.log(2);
   } catch (e) {}
 });
