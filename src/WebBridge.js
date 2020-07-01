@@ -27,20 +27,22 @@ export class WebBridge {
 }
 
 window.addEventListener("message", (event) => {
-  console.log(event);
-  console.log(event.data);
-  const data = JSON.parse(event.data);
-  console.log(data);
+  // console.log(event);
+  // console.log(event.data);
+  try {
+    const data = JSON.parse(event.data);
+    console.log(data);
 
-  const connection = WebBridge.connections[data.id];
-  if (!connection || !connection.resolve) {
-    return;
-  }
-
-  switch (data.message) {
-    case "bridge:connected": {
-      const bridge = new WebBridge(data.connectionId);
-      connection.resolve(data);
+    const connection = WebBridge.connections[data.id];
+    if (!connection || !connection.resolve) {
+      return;
     }
-  }
+
+    switch (data.message) {
+      case "bridge:connected": {
+        const bridge = new WebBridge(data.connectionId);
+        connection.resolve(data);
+      }
+    }
+  } catch (e) {}
 });
