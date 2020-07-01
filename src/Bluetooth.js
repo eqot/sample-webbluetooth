@@ -19,7 +19,7 @@ class Bluetooth {
     window.onmessage = (event) => {
       console.log(event.data);
 
-      send("ok: " + event.data);
+      send(event.data);
     };
 
     send("requestDevice");
