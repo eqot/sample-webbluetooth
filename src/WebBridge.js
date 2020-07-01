@@ -48,7 +48,7 @@ window.addEventListener("message", (event) => {
     switch (data.message) {
       case "bridge:connected": {
         const bridge = new WebBridge(data.connectionId);
-        connection.resolve(data);
+        connection.resolve(bridge);
 
         console.log("resolved", data.connectionId);
 
