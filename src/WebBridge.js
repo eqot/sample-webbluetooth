@@ -31,27 +31,26 @@ window.addEventListener("message", (event) => {
   console.log(event.data);
   // try {
   // const data = JSON.parse(event.data);
-  const { data } = event;
+  const { type, connectionId, message } = event.data;
 
   if (data.type !== "toio") {
     return;
   }
 
-  console.log(data);
   console.log(0);
 
-  const connection = WebBridge.connections[data.connectionId];
+  const connection = WebBridge.connections[connectionId];
   if (!connection || !connection.resolve) {
     return;
   }
   console.log(1);
 
-  switch (data.message) {
+  switch (message) {
     case "bridge:connected": {
-      const bridge = new WebBridge(data.connectionId);
+      const bridge = new WebBridge(connectionId);
       connection.resolve(bridge);
 
-      console.log("resolved", data.connectionId);
+      console.log("resolved", connectionId);
 
       break;
     }
