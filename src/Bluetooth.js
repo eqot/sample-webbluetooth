@@ -4,7 +4,7 @@ function send(method, params) {
     method,
     params
   };
-  window.parent.postMessage(JSON.stringify(message), "*");
+  window.parent.postMessage(message, "*");
 }
 
 window.addEventListener("message", (event) => {
