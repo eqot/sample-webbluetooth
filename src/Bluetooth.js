@@ -1,5 +1,6 @@
 function send(method, params) {
   const message = {
+    type: "toio",
     jsonrpc: "2.0",
     method,
     params
