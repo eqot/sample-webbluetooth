@@ -9,9 +9,9 @@ function send(method, params) {
 }
 
 window.addEventListener("message", (event) => {
-  console.log(event);
+  console.log(event.data);
 
-  send("ok: " + event);
+  send("ok: " + event.data);
 });
 
 class Bluetooth {
