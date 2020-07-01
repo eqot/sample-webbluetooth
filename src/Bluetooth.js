@@ -11,16 +11,16 @@ function send(method, params) {
 window.addEventListener("message", (event) => {
   console.log(event.data);
 
-  send("ok: " + event.data);
+  send(event.data);
 });
 
 class Bluetooth {
   static requestDevice(options) {
-    window.onmessage = (event) => {
-      console.log(event.data);
+    // window.onmessage = (event) => {
+    //   console.log(event.data);
 
-      send(event.data);
-    };
+    //   send(event.data);
+    // };
 
     send("requestDevice");
 
