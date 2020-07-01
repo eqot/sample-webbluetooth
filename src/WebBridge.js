@@ -27,30 +27,23 @@ export class WebBridge {
 }
 
 window.addEventListener("message", (event) => {
-  // console.log(event);
-  console.log(event.data);
-  // try {
-  // const data = JSON.parse(event.data);
+  // console.log(event.data);
+
   const { type, connectionId, message } = event.data;
 
   if (type !== "toio") {
     return;
   }
 
-  console.log(0);
-
   const connection = WebBridge.connections[connectionId];
   if (!connection || !connection.resolve) {
     return;
   }
-  console.log(1);
 
   switch (message) {
     case "bridge:connected": {
       const bridge = new WebBridge(connectionId);
       connection.resolve(bridge);
-
-      console.log("resolved", connectionId);
 
       break;
     }
@@ -58,6 +51,4 @@ window.addEventListener("message", (event) => {
     default:
       break;
   }
-  console.log(2);
-  // } catch (e) {}
 });
