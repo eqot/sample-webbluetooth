@@ -40,7 +40,7 @@ window.addEventListener("message", (event) => {
   console.log(data);
   console.log(0);
 
-  const connection = WebBridge.connections[data.id];
+  const connection = WebBridge.connections[data.connectionId];
   if (!connection || !connection.resolve) {
     return;
   }
