@@ -27,6 +27,8 @@ export class WebBridge {
 }
 
 window.addEventListener("message", (event) => {
+  console.log(event);
+  console.log(event.data);
   const data = JSON.parse(event.data);
   console.log(data);
 

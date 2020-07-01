@@ -3,6 +3,7 @@ import React from "react";
 import "./Bluetooth";
 import { WebBridge } from "./WebBridge";
 
+/*
 class BleDevice {
   device = null;
   characteristics = {};
@@ -38,6 +39,7 @@ class BleDevice {
     characteristic.writeValue(new Uint8Array(data));
   }
 }
+*/
 
 export default function App() {
   let coreCube;
