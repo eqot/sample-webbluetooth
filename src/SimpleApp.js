@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./Bluetooth";
+import { WebBridge } from "./WebBridge";
 
 class BleDevice {
   device = null;
@@ -65,8 +66,11 @@ export default function App() {
 
       <button
         onClick={async () => {
-          coreCube = await BleDevice.discover("10b20100-5b3b-4571-9508-cf3efcd7bbae");
-          await coreCube.connect();
+          // coreCube = await BleDevice.discover("10b20100-5b3b-4571-9508-cf3efcd7bbae");
+          // await coreCube.connect();
+
+          const bridge = await WebBridge.connect();
+          console.log(bridge);
         }}
       >
         接続
