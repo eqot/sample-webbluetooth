@@ -33,7 +33,7 @@ window.addEventListener("message", (event) => {
   // const data = JSON.parse(event.data);
   const { type, connectionId, message } = event.data;
 
-  if (data.type !== "toio") {
+  if (type !== "toio") {
     return;
   }
 
