@@ -51,7 +51,12 @@ window.addEventListener("message", (event) => {
         connection.resolve(data);
 
         console.log("resolved", data.connectionId);
+
+        break;
       }
+
+      default:
+        break;
     }
     console.log(2);
   } catch (e) {}
