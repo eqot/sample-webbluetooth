@@ -24,6 +24,10 @@ export class WebBridge {
     };
     window.parent.postMessage(message, "*");
   }
+
+  constructor(connectionId) {
+    this.connectionId = connectionId;
+  }
 }
 
 window.addEventListener("message", (event) => {
