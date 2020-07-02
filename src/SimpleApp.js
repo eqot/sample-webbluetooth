@@ -71,7 +71,8 @@ export default function App() {
           // coreCube = await BleDevice.discover("10b20100-5b3b-4571-9508-cf3efcd7bbae");
           // await coreCube.connect();
 
-          const bridge = await WebBridge.connect();
+          const bridge = new WebBridge();
+          await bridge.connect();
           console.log(bridge);
         }}
       >
