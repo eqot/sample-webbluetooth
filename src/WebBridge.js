@@ -22,10 +22,10 @@ export class WebBridge {
 
       const message = {
         jsonrpc: "2.0",
-        type: "toio"
+        type: "toio",
         method,
         params,
-        id,
+        id
       };
       window.parent.postMessage(message, "*");
     });
