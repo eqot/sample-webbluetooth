@@ -13,7 +13,7 @@ export class WebBridge {
   }
 
   async connect() {
-    return connection.send("bridge:connect");
+    return this.send("bridge:connect");
   }
 
   async send(method, params) {
