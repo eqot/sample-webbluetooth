@@ -25,7 +25,7 @@ export class WebBridge {
         type: "toio",
         method,
         params,
-        id
+        id: this.id
       };
       window.parent.postMessage(message, "*");
     });
